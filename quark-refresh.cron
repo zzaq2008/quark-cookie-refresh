@@ -1,0 +1,5 @@
+# /etc/cron.d/quark-refresh —— 容器内定时任务
+# 每天凌晨 3 点刷新一次夸克 cookie 并同步到 OpenList
+SHELL=/bin/bash
+PATH=/usr/local/bin:/usr/bin:/bin
+0 3 * * * root set -a; . /root/.config/quark-refresh/env; set +a; python3 /opt/quark-refresh/refresh_quark_cookie.py >> /var/log/quark-refresh/refresh.log 2>&1
